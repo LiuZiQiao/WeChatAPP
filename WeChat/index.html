@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<<link rel="stylesheet" href="./css/main.css">
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+		mui.plusReady(function(){
+			var subPage = {"sub1.html","sub2.html","sub3.html","sub4.html"};
+			var subPageStyle={
+				top:"44px",
+				bottom:"50px"
+			};
+			var mainView = plus.webview.currentWebview();
+			for(var i=0;i<subPage.length;i++){
+				var url = subPage[i];
+				var subView = plus.webview.create(url,url,subPageStyle);
+				subView.hide();
+				mainView.append(subView);
+			}
+			plus.webview.show(subPage[0]);
+			
+			mui(".mui-tab-label").on("tap","a",function(){
+				var id = this.getAttribute("href");
+				plus.webview.show(id);
+			});
+		});
+    </script>
+</head>
+<body>
+	<!-- 头部 -->
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">微信</h1>
+	</header>
+	
+	
+	<!--底部导航栏-->
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="sub1.html">
+			<span class="mui-icon mui-icon-chatbubble"></span>
+			<span class="mui-tab-label">微信</span>
+		</a>
+		<a class="mui-tab-item" href="sub2.html">
+			<span class="mui-icon mui-icon-phone"></span>
+			<span class="mui-tab-label">通讯录</span>
+		</a>
+		<a class="mui-tab-item" href="sub3.html">
+			<span class="mui-icon mui-icon-navigate"></span>
+			<span class="mui-tab-label">发现</span>
+		</a>
+		<a class="mui-tab-item" href="sub4.html">
+			<span class="mui-icon mui-icon-person"></span>
+			<span class="mui-tab-label">我</span>
+		</a>
+	</nav>
+</body>
+</html>
